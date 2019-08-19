@@ -1,16 +1,16 @@
 from random import randint
+import json
+import os
+
 class Monstro:
     metodoAtaque = 0
     metodoDefesa = 0
-    Defesas = []
-    Ataques = []
 
 
-
-    def __str__(self): #sobrescreve o método str padrao pois o padrao retorna o endereco de memoria do objeto
+    def __str__(self):  # sobrescreve o método str padrao pois o padrao retorna o endereco de memoria do objeto
         return self.nome
 
-    def __init__(self,nome,tipo, poderAtaque, poderDefesa, pontoVida, grauEvo, nivel):
+    def __init__(self, nome, tipo, poderAtaque, poderDefesa, pontoVida, grauEvo, nivel):
         self.nome = nome
         self.tipo = tipo
         self.poderAtaque = poderAtaque
@@ -18,73 +18,106 @@ class Monstro:
         self.pontoVida = pontoVida
         self.grauEvo = grauEvo
         self.nivel = nivel
+        self.Defesas = []
+        self.Ataques = []
 
     def MetodoAtq(self):
         self.Ataques.clear()
         for _ in range(10):
             self.Ataques.append(self.poderAtaque * self.grauEvo * self.nivel * randint(1, 5))
-            
-        
-    
-    
+
     def MetodoDef(self):
         self.Defesas.clear()
         for _ in range(10):
             self.Defesas.append(self.poderDefesa * self.grauEvo * self.nivel * randint(1, 3))
+    
+    def passarNivel(self):
+        if self.tipo == "eletrico":
+            self.pontoVida += 10
+            self.poderDefesa += 1
+            self.nivel += 1
+            print(self.nome + " passou para o nivel " + str(self.nivel))
+            print("O poder de Defesa aumentou de" + str(self.poderDefesa-1) + " para " + str(self.poderDefesa))
+            print("Os pontos de vida aumentaram de " + str(self.pontoVida-10) + " para " + str(self.pontoVida))
+        elif self.tipo == "fogo":
+            self.poderAtaque += 1
+            self.poderDefesa += 1
+            self.nivel += 1
+            print(self.nome + " passou para o nivel " + str(self.nivel))
+            print("O poder de Defesa aumentou de " + str(self.poderDefesa-1) + " para " + str(self.poderDefesa))
+            print("O poder de Ataque aumentou de " + str(self.poderAtaque-1) + " para " + str(self.poderAtaque))
+        elif self.tipo == "agua":
+            self.poderAtaque += 1
+            self.pontoVida += 15
+            self.nivel += 1
+            print(self.nome + " passou para o nivel " + str(self.nivel))
+            print("O poder de Ataque aumentou de " + str(self.poderAtaque-1) + " para " + str(self.poderAtaque))
+            print("Os pontos de vida aumentaram de " + str(self.pontoVida-15) + " para " + str(self.pontoVida))
+        else:
+            self.pontoVida += 20
+            self.nivel += 1
+            print(self.nome + " passou para o nivel " + str(self.nivel))
+            print("Os pontos de vida aumentaram de " + str(self.pontoVida-20) + " para " + str(self.pontoVida))
 
-pikachu = Monstro("pikachu", "eletrico", 3, 2, 300, 1, 5)
-charmander = Monstro("charmander", "fogo", 3, 3, 250, 1, 5)
-acqua = Monstro("acqua", "agua", 3, 1, 260, 1, 5)
-fluff = Monstro("fluff", "terra", 2, 3, 240, 1, 5)
-haleluia = Monstro("haleluia", "holy", 2, 2, 300, 1, 5)
-lilith = Monstro("lilith", "dark", 3, 3, 250, 1, 5)
-aerea = Monstro("aerea", "ar", 3, 2, 260, 1, 5)
-metal = Monstro("metal", "metal", 1, 2, 240, 1, 5)
-Competidores = [pikachu,charmander,acqua,fluff,haleluia,lilith,aerea,metal]
+conteudo = open(os.path.dirname(__file__)+'/dadosMonstros.json').read()
+listamonstros = json.loads(conteudo)
+Competidores = []
+for dadoMonstro in listamonstros:
+    monstro = Monstro(dadoMonstro["nome"],dadoMonstro["tipo"],dadoMonstro["poderAtaque"],dadoMonstro["poderDefesa"],dadoMonstro["pontoVida"],dadoMonstro["grauEvo"],dadoMonstro["nivel"])
+    Competidores.append(monstro)
 
-def batalha(monstro1,monstro2):
+def batalha(monstro1, monstro2):
     monstro1.MetodoAtq()
     monstro2.MetodoAtq()
     monstro1.MetodoDef()
     monstro2.MetodoDef()
     Danos1 = []
     Danos2 = []
-    print(monstro1.Ataques)
-    print(monstro1.Defesas)
-    print(monstro2.Ataques)
-    print(monstro2.Defesas)
-    
+    pv1 = monstro1.pontoVida
+    pv2 = monstro2.pontoVida
+
     for numero in range(10):
         Danos1.append(monstro1.Ataques[numero] - monstro2.Defesas[numero])
         Danos2.append(monstro2.Ataques[numero] - monstro1.Defesas[numero])
-        
 
     for numero in range(10):
-        if Danos1[numero] > 0:
-            monstro1.pontoVida = monstro1.pontoVida - Danos1[numero]
-        if Danos2[numero] > 0:
-            monstro2.pontoVida = monstro2.pontoVida - Danos2[numero]
-    print("O " + monstro1.__str__() + " ficou com " + str(monstro1.pontoVida) + " pontos de vida")
-    print("O " + monstro2.__str__() + " ficou com " + str(monstro2.pontoVida) + " pontos de vida")
-    if monstro1.pontoVida > monstro2.pontoVida:
+        if pv1 > 0 or pv2 > 0:
+            if Danos1[numero] > 0:
+                pv2 = pv2 - Danos1[numero]
+            if Danos2[numero] > 0:
+                pv1 = pv1 - Danos2[numero]
+    print("O " + monstro1.__str__() + " ficou com " + str(pv1) + " pontos de vida")
+    print("O " + monstro2.__str__() + " ficou com " + str(pv2) + " pontos de vida")
+    if pv1 > pv2:
         print(monstro1.__str__() + " ganhou")
+        monstro1.passarNivel()
         return monstro1
     else:
         print(monstro2.__str__() + " ganhou")
+        monstro2.passarNivel()
         return monstro2
 
-def campeonato():
-    semifinal = []
-    final = []
-    semifinal.append(batalha(Competidores[0],Competidores[1]))
-    semifinal.append(batalha(Competidores[2],Competidores[3]))
-    semifinal.append(batalha(Competidores[4],Competidores[5]))
-    semifinal.append(batalha(Competidores[6],Competidores[7]))
 
-    final.append(batalha(semifinal[0], semifinal[1]))
-    final.append(batalha(semifinal[2], semifinal[3]))
+def campeonato():
+    quartasFinal = []
+    semiFinal = []
+    final = []
+
+    for i in range(0, (len(Competidores) - 1), 2):
+        m1, m2 = Competidores[i], Competidores [i + 1]
+        quartasFinal.append(batalha(m1,m2))
     
-    vencedor = batalha(final[0], final[1])
+    for i in range(0, (len(quartasFinal) - 1), 2):
+        m1, m2 = quartasFinal[i], quartasFinal [i + 1]
+        semiFinal.append(batalha(m1,m2))
+    
+    for i in range(0, (len(semiFinal) - 1), 2):
+        m1, m2 = semiFinal[i], semiFinal [i + 1]
+        final.append(batalha(m1,m2))
+    
+    for i in range(0, (len(final) - 1), 2):
+        m1, m2 = final[i], final [i + 1]
+        vencedor = batalha(m1,m2)
     print("O vencedor do campeonato foi: " + vencedor.__str__())
 
 

@@ -1,0 +1,181 @@
+
+[
+	{
+		"nome": "pikachu",
+		"tipo":"eletrico",
+		"poderAtaque": 3,
+		"poderDefesa":3,
+        "pontoVida": 270,
+        "grauEvo": 1,
+        "nivel": 5
+
+
+
+	},
+  {
+		"nome": "charmander",
+		"tipo":"fogo",
+		"poderAtaque": 3,
+		"poderDefesa":3,
+        "pontoVida": 250,
+        "grauEvo": 1,
+        "nivel": 5
+
+
+
+	},{
+		"nome": "acqua",
+		"tipo":"agua",
+		"poderAtaque": 3,
+		"poderDefesa":1,
+        "pontoVida": 260,
+        "grauEvo": 1,
+        "nivel": 5
+
+
+
+	},{
+		"nome": "fluff",
+		"tipo":"eletrico",
+		"poderAtaque": 2,
+		"poderDefesa":3,
+        "pontoVida": 240,
+        "grauEvo": 1,
+        "nivel": 5
+
+
+
+	},{
+		"nome": "halelluia",
+		"tipo":"fogo",
+		"poderAtaque": 3,
+		"poderDefesa":2,
+        "pontoVida": 300,
+        "grauEvo": 1,
+        "nivel": 5
+
+
+
+	},{
+		"nome": "lilith",
+		"tipo":"agua",
+		"poderAtaque": 3,
+		"poderDefesa":3,
+        "pontoVida": 250,
+        "grauEvo": 1,
+        "nivel": 5
+
+
+
+	},{
+		"nome": "aerea",
+		"tipo":"eletrico",
+		"poderAtaque": 3,
+		"poderDefesa":2,
+        "pontoVida": 260,
+        "grauEvo": 1,
+        "nivel": 5
+
+
+
+	},{
+		"nome": "metal",
+		"tipo":"fogo",
+		"poderAtaque": 1,
+		"poderDefesa":2,
+        "pontoVida": 240,
+        "grauEvo": 1,
+        "nivel": 5
+
+
+
+	},{
+		"nome": "lariat",
+		"tipo":"agua",
+		"poderAtaque": 3,
+		"poderDefesa":3,
+        "pontoVida": 270,
+        "grauEvo": 1,
+        "nivel": 5
+
+
+
+	},{
+		"nome": "mamaluke",
+		"tipo":"eletrico",
+		"poderAtaque": 3,
+		"poderDefesa":3,
+        "pontoVida": 250,
+        "grauEvo": 1,
+        "nivel": 5
+
+
+
+	},{
+		"nome": "firazin",
+		"tipo":"fogo",
+		"poderAtaque": 3,
+		"poderDefesa":1,
+        "pontoVida": 260,
+        "grauEvo": 1,
+        "nivel": 5
+
+
+
+	},{
+		"nome": "watergate",
+		"tipo":"agua",
+		"poderAtaque": 2,
+		"poderDefesa":3,
+        "pontoVida": 240,
+        "grauEvo": 1,
+        "nivel": 5
+
+
+
+	},{
+		"nome": "bziit",
+		"tipo":"eletrico",
+		"poderAtaque": 3,
+		"poderDefesa":2,
+        "pontoVida": 300,
+        "grauEvo": 1,
+        "nivel": 5
+
+
+
+	},{
+		"nome": "carvonis",
+		"tipo":"fogo",
+		"poderAtaque": 3,
+		"poderDefesa":3,
+        "pontoVida": 250,
+        "grauEvo": 1,
+        "nivel": 5
+
+
+
+	},{
+		"nome": "chuvis",
+		"tipo":"agua",
+		"poderAtaque": 3,
+		"poderDefesa":2,
+        "pontoVida": 260,
+        "grauEvo": 1,
+        "nivel": 5
+
+
+
+	},{
+		"nome": "tomadis",
+		"tipo":"eletrico",
+		"poderAtaque": 1,
+		"poderDefesa":2,
+        "pontoVida": 240,
+        "grauEvo": 1,
+        "nivel": 5
+
+
+
+	}
+  ]
